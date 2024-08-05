@@ -1,26 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import ContactPage from './screens/ContactPage';
+import Sidebar from './components/Sidebar';
+import Header from './components/Header';
+import 'leaflet/dist/leaflet.css';
+import ChartPage from './screens/ChartPage';
+import MapPage from './screens/MapPage';
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="flex">
+        <Sidebar />
+        <div className="flex-1">
+          <Header />
+          <main className="p-4">
+            <Routes>
+              <Route path="/" element={<ContactPage />} />
+              <Route path="/chart" element={<ChartPage />} />
+            <Route path="/map" element={<MapPage />} />
+            </Routes>
+          </main>
+        </div>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
